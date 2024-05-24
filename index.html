@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Check Button</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+        header {
+            text-align: center;
+            padding: 20px 0;
+            background-color: #333;
+            color: white;
+            width: 100%;
+        }
+        .container {
+            text-align: center;
+            margin-top: 20px;
+        }
+        input[type="text"] {
+            padding: 10px;
+            margin-right: 10px;
+            font-size: 16px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        #result {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Palindrome Checker</h1>
+    </header>
+    <div class="container">
+        <p>Enter a text to check if it's a palindrome:</p>
+        <input type="text" id="text-input">
+        <button id="check-btn">Check</button>
+        <div id="result"></div>
+    </div>
+
+    <script>
+        // Get references to the input and button elements
+        const input = document.getElementById('text-input');
+        const button = document.getElementById('check-btn');
+        const resultDiv = document.getElementById('result');
+
+        // Function to check if a string is a palindrome
+        function isPalindrome(str) {
+            // Remove non-alphanumeric characters and convert to lowercase
+            const alphanumericStr = str.replace(/[^A-Za-z0-9]/g, '').toLowerCase();
+            return alphanumericStr === alphanumericStr.split('').reverse().join('');
+        }
+
+        // Add click event listener to the button
+        button.addEventListener('click', function() {
+            // Check if the input field is empty
+            if (input.value.trim() === '') {
+                // If it's empty, display an alert
+                alert('Please input a value');
+            } else {
+                // Check if the input value is a palindrome
+                if (isPalindrome(input.value)) {
+                    // If it's a palindrome, display the result
+                    resultDiv.textContent = input.value + ' is a palindrome';
+                } else {
+                    // If it's not a palindrome, display a different result
+                    resultDiv.textContent = input.value + ' is not a palindrome';
+                }
+            }
+        });
+    </script>
+</body>
+</html>
